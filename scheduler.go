@@ -348,6 +348,11 @@ func Schedule(post Post) error {
 	}
 	Data = ps
 
+	// if disabled, do not trigger scheduler
+	if ps.Addon.Meta.PonzuAddonStatus != addon.StatusEnabled {
+		return fmt.Errorf("Addon %s is not enabled", ps.Addon.Meta.PonzuAddonName)
+	}
+
 	client := http.Client{Timeout: time.Second * 30}
 
 	var fbResponse map[string]interface{}
