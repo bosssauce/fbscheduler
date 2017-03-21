@@ -34,7 +34,7 @@ func init() {
 	var err error
 	Data, err = data()
 	if err != nil {
-
+		log.Println("[fbscheduler] Failed to initialize data struct:", err)
 	}
 }
 
